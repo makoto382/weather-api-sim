@@ -49,7 +49,7 @@ def add_weather(data: WeatherData):
 @app.get("/weather/{city}")
 def get_weather_by_path(city: str):
     dummy_weather_data = {
-        "Tokyo": {"weather": "🐸 Rainy", "temperature": "30℃"},
+        "Tokyo": {"weather": "Sunny", "temperature": "30℃"},
         "Osaka": {"weather": "Cloudy", "temperature": "28℃"},
         "Sapporo": {"weather": "Snow", "temperature": "5℃"},
         "Fukuoka": {"weather": "Rainy", "temperature": "26℃"}
