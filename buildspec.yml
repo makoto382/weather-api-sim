@@ -1,0 +1,23 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin 020386416476.dkr.ecr.ap-northeast-1.amazonaws.com
+  build:
+    commands:
+      - echo Building Docker image...
+      - docker build -t weather-api-sim .
+      - docker tag weather-api-sim:latest 020386416476.dkr.ecr.ap-northeast-1.amazonaws.com/weather-api-sim:latest
+  post_build:
+    commands:
+      - echo Pushing Docker image to ECR...
+      - docker push 020386416476.dkr.ecr.ap-northeast-1.amazonaws.com/weather-api-sim:latest
+      - echo Writing image definitions...
+      - |
+        printf '[{"name":"weather-api-sim","imageUri":"%s"}]' \
+        020386416476.dkr.ecr.ap-northeast-1.amazonaws.com/weather-api-sim:latest > imagedefinitions.json
+
+artifacts:
+  files: imagedefinitions.json
