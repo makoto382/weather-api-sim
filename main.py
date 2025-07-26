@@ -54,6 +54,8 @@ def get_weather_by_path(city: str):
         "Sapporo": {"weather": "Snow", "temperature": "5℃"},
         "Fukuoka": {"weather": "Rainy", "temperature": "26℃"},
         "Sapporo": {"weather": "❄️ Snow", "temperature": "5℃"},
+        "Nagoya": {"weather": "☁️ Cloudy", "temperature": "29℃"},
+
     }
 
     if city in weather_db:
